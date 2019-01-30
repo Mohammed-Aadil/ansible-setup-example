@@ -1,0 +1,6 @@
+---
+- name: Get all static files
+  django_manage: 
+    command: collectstatic
+    app_path: "{{ backend_app_dir }}"
+    virtualenv: "{{ venv_dir }}"

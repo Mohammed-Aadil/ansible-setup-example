@@ -1,0 +1,9 @@
+---
+- name: add ppa with latest python versions
+  apt_repository:
+      repo='ppa:deadsnakes/ppa'
+  become: yes
+  
+- name: install python3.6
+  apt: name=python3.6 state=latest
+  become: yes

@@ -1,0 +1,15 @@
+---
+- name: Create a virtualenv directory
+  file: path={{ venv_dir }} state=directory
+  become: yes
+
+- name: Change virtualenv directory owner
+  command: chown -R {{ linux_user }} {{ venv_dir }}
+  become: yes
+
+- name: Install dependencies
+  pip:    requirements={{ backend_app_dir }}/requirements.txt
+          virtualenv={{ venv_dir }}
+          virtualenv_python=python3.6
+  become_user: "{{ linux_user }}"
+  become: yes

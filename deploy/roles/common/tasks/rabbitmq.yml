@@ -1,0 +1,7 @@
+---
+- name: Install required packages for redis
+  apt: name=rabbitmq-server state=latest update_cache=yes
+  become: yes
+
+  notify:
+    - restart rabbitmq-server

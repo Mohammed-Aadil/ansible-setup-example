@@ -1,1 +1,29 @@
-backend_server_git_repo: 
+app_name: test
+linux_user: test
+linux_user_group: www-data
+
+app_dir: "/home/{{ linux_user }}/{{ app_name }}"
+backend_app_dir: "/home/{{ linux_user }}/{{ app_name }}/backend"
+angular_app_dir: "/home/{{ linux_user }}/{{ app_name }}/frontend/angular-app"
+react_app_dir: "/home/{{ linux_user }}/{{ app_name }}/frontend/react-app"
+
+# Git configuration
+git_repo: git@github.com:Mohammed-Aadil/ansible-django-react-angular-setup.git
+
+app_settings_dir: "{{ app_dir }}/backend"
+app_settings: backend.settings
+
+# Database configurations
+db_setup: True  # for prod don't setup db use rds instead
+db_name: "{{ app_name }}"
+db_master_user: postgres
+db_master_user_password:
+db_user: db_user
+db_user_password:
+db_host:
+db_port: 5432
+database_url: "psql://{{ db_user }}:{{ db_user_password }}@{{ db_host }}:{{ db_port }}/{{ db_name }}"
+
+# Python virtualenv configurations
+venv_dir: '/home/{{ linux_user }}/envs/{{ app_name }}'
+venv_python: '{{ venv_dir }}/bin/python3.6'

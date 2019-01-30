@@ -1,0 +1,18 @@
+git_branch: develop
+
+debug_mode: True
+
+secret_key: sdlgbdfkjgb94ibrego493gtbhr3iuvfwg944tre
+allowed_hosts: 127.0.0.1
+
+default_superuser_email: admin@admin.com
+default_superuser_password: 1qaz2wsx3
+
+# Database configurations
+db_user_password: 12345678
+db_host: '127.0.0.1'
+
+raven_dsn:
+
+# Console customization
+console_promt: PS1="\[\033[01;32m\]\u@development \[\033[01;34m\]\t \w \$ \[\033[00m\]"

@@ -1,0 +1,54 @@
+---
+- name: Install and configure db
+  apt: 
+    name: [
+      postgresql,
+      postgresql-contrib,
+      python-psycopg2
+    ] 
+    state: latest
+  become: yes  
+  when: db_setup
+
+- name: Start and enable postgres
+  service: name=postgresql enabled=yes state=started
+  become: yes
+  when: db_setup
+
+- name: Create database
+  postgresql_db: name={{ db_name }}
+  become_user: postgres
+  become: yes
+  when: db_setup
+
+- name: Configure a new postgresql user
+  postgresql_user: db={{ db_name }}
+                    name={{ db_user }}
+                    password={{ db_user_password }}
+                    priv=ALL
+  become: yes
+  become_user: postgres
+  when: db_setup
+
+# RDS only steps
+- name: Create rds database
+  postgresql_db: name={{ db_name }}
+                  port={{ db_port }}
+                  login_host={{ db_host }}
+                  login_user={{ db_master_user }}
+                  login_password={{ db_master_user_password }}
+  when: not db_setup
+
+
+- name: Configure rds new postgresql user
+  postgresql_user: db={{ db_name }}
+                    name={{ db_user }}
+                    password={{ db_user_password }}
+                    priv=ALL
+                    encrypted=yes
+
+                    port={{ db_port }}
+                    login_host={{ db_host }}
+                    login_user={{ db_master_user }}
+                    login_password={{ db_master_user_password }}
+  when: not db_setup

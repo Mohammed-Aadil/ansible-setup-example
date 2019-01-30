@@ -1,0 +1,10 @@
+---
+# Create one management command `create_superuser_on_deploy`
+# which will read `DEFAULT_SUPERUSER_EMAIL` and `DEFAULT_SUPERUSER_PASSWORD`
+# from env file and create one super user in django
+
+# - name: Ensure superuser exists
+#   django_manage: command=create_superuser_on_deploy
+#                  app_path={{ backend_app_dir }}
+#                  virtualenv={{ venv_dir }}
+

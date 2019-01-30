@@ -1,0 +1,17 @@
+---
+- include_tasks: create_project_user.yml
+- include_tasks: install_python36_for_ubuntu.yml
+- include_tasks: server.yml
+- include_tasks: git.yml
+- include_tasks: env.yml
+- include_tasks: redis.yml
+- include_tasks: rabbitmq.yml
+
+- include_tasks: postgres.yml
+- include_tasks: dependencies.yml
+- include_tasks: migrations.yml
+- include_tasks: management_commands.yml
+- include_tasks: static.yml
+# - include_tasks: nginx.yml
+# - include_tasks: uwsgi.yml
+# - include_tasks: supervisor.yml
