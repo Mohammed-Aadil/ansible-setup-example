@@ -1,0 +1,7 @@
+---
+- name: Starting Deployment complete stacks
+  hosts: webservers
+  roles:
+    - common
+    - reactserver
+    - angularserver

@@ -1,0 +1,19 @@
+all:
+    hosts:
+        development:
+            ansible_host: 139.59.41.53
+            ansible_user: root
+            ansible_python_interpreter: /usr/bin/python3
+        staging:
+            ansible_host: 139.59.41.53
+            ansible_user: root
+            ansible_python_interpreter: /usr/bin/python3
+        production:
+            ansible_host: 139.59.41.53
+            ansible_user: root
+            ansible_python_interpreter: /usr/bin/python3
+webservers:
+    hosts:
+        development:
+        staging:
+        production:
