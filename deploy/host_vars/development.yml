@@ -29,4 +29,4 @@ ssl_certificate_key_path:
 cors_disabled: True
 cors_allowed_hosts: 127.0.0.1, localhost
 
-# gunicorn settings
+web_client_backend_url: http://localhost:8000

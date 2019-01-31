@@ -28,3 +28,5 @@ ssl_certificate_key_path: /etc/letsencrypt/live/solastis.com/privkey.pem
 # cors settings
 cors_disabled: True
 cors_allowed_hosts: 127.0.0.1, localhost
+
+web_client_backend_url: http://localhost:8000

@@ -1,0 +1,15 @@
+---
+- name: Install web client packages
+  command: yarn install
+  args:
+    chdir: "{{ react_app_dir }}"
+
+- name: Create .env file
+  template:
+    src: "env.j2"
+    dest: "{{ react_app_dir }}/.env"
+
+- name: Build web client
+  command: yarn build
+  args:
+    chdir: "{{ react_app_dir }}"
