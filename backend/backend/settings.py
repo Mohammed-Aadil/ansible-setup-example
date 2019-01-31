@@ -144,3 +144,11 @@ CORS_ORIGIN_WHITELIST = env.list(
     'CORS_ALLWOED_HOSTS',
     default=[]
 )
+
+# Sentry setup
+RAVEN_CONFIG = {
+    'dsn': env.str(
+        'RAVEN_DSN',
+        default=''
+    ),
+}
