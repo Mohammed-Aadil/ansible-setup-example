@@ -4,6 +4,7 @@ stdout_logfile = /var/log/supervisor/{{ app_name }}-server-out.log
 stderr_logfile = /var/log/supervisor/{{ app_name }}-server-err.log
 logfile_maxbytes = 50MB
 logfile_backups = 5
+directory = {{ backend_app_dir }}
 command = {{ backend_app_dir }}/config/deploy/bash_files/gunicorn.sh
 
 [program:{{ app_name }}-celery]

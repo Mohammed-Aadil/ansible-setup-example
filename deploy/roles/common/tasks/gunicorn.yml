@@ -7,7 +7,19 @@
   become_user: "{{ linux_user }}"
   become: yes
 
+- name: Create bash_files dir in project
+  file:
+    path: "{{ backend_app_dir }}/config/deploy/bash_files"
+    owner: "{{ linux_user }}"
+    group: "{{ linux_user_group }}"
+    state: directory
+  become_user: "{{ linux_user }}"
+
 - name: Create gunicorn runner file
   template:
     src: gunicorn.j2
     dest: "{{ backend_app_dir }}/config/deploy/bash_files/gunicorn.sh"
+
+- name: Give executable permission 
+  command: "chmod a+x {{ backend_app_dir }}/config/deploy/bash_files/gunicorn.sh"
+  become: yes

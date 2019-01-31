@@ -11,8 +11,8 @@
     state: directory
     owner: root
 
-- name: start supervisord service and have it run during system startup
-  service: name=supervisord state=started enabled=yes
+- name: start supervisor service and have it run during system startup
+  service: name=supervisor state=started enabled=yes
   become: yes
 
 - name: setup supervisor conf for project
