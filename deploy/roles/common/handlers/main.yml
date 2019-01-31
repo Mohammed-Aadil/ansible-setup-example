@@ -6,3 +6,7 @@
 - name: restart rabbitmq-server
   service: name=rabbitmq-server state=restarted
   become: yes
+
+- name: restart nginx
+  service: name=nginx state=restarted
+  become: yes

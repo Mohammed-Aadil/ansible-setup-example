@@ -12,6 +12,6 @@
 - include_tasks: migrations.yml
 - include_tasks: management_commands.yml
 - include_tasks: static.yml
-# - include_tasks: nginx.yml
-# - include_tasks: uwsgi.yml
-# - include_tasks: supervisor.yml
+- include_tasks: nginx.yml
+- include_tasks: gunicorn.yml
+- include_tasks: supervisor.yml

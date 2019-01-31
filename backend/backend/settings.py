@@ -11,21 +11,27 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import environ
 
+env = environ.Env()
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '&(5zz=h0d!!%_yxfo-du74j&5sope$)cp(g#igc(f(t*qgrk@o'
+SECRET_KEY = env('SECRET_KEY', default="dsglksn")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool('DJANGO_DEBUG', False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env.list(
+    'ALLOWED_HOSTS',
+    default=[]
+)
 
 
 # Application definition
@@ -39,6 +45,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+if DEBUG:
+    INSTALLED_APPS += ['debug_toolbar']
+
+if env.bool('CORS_DISABLED', default=False):
+    INSTALLED_APPS += ['corsheaders']
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -48,6 +60,13 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+if DEBUG:
+    MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware']
+
+if env.bool('CORS_DISABLED', default=False):
+    MIDDLEWARE += ['corsheaders.middleware.CorsMiddleware']
+
 
 ROOT_URLCONF = 'backend.urls'
 
@@ -119,3 +138,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/staticfiles/'
+
+# CORS settings
+CORS_ORIGIN_WHITELIST = env.list(
+    'CORS_ALLWOED_HOSTS',
+    default=[]
+)

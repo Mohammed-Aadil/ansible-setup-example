@@ -1,0 +1,38 @@
+---
+- name: Ensure supervisor is installed
+  apt:
+    name: supervisor
+    state: latest
+  become: yes
+
+- name: Create supervisor config dir
+  file:
+    dest: "/etc/supervisor"
+    state: directory
+    owner: root
+
+- name: start supervisord service and have it run during system startup
+  service: name=supervisord state=started enabled=yes
+  become: yes
+
+- name: setup supervisor conf for project
+  template: "src=supervisor.j2 dest=/etc/supervisor/conf.d/{{ app_name }}.conf"
+  become: yes
+
+- name: update supervisorctl
+  supervisorctl: 
+    name: "{{ app_name }}-server"
+    state: restarted
+  become: yes
+
+- name: update supervisorctl celery-runner
+  supervisorctl: 
+    name: "{{ app_name }}-celery"
+    state: restarted
+  become: yes
+
+- name: update supervisorctl celery-beat-runner
+  supervisorctl: 
+    name: "{{ app_name }}-celery-beat"
+    state: restarted
+  become: yes

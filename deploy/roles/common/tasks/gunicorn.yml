@@ -1,0 +1,13 @@
+---
+- name: Ensure gunicorn is installed
+  pip:
+    name: gunicorn
+    virtualenv: "{{ venv_dir }}"
+    virtualenv_python: python3.6
+  become_user: "{{ linux_user }}"
+  become: yes
+
+- name: Create gunicorn runner file
+  template:
+    src: gunicorn.j2
+    dest: "{{ backend_app_dir }}/config/deploy/bash_files/gunicorn.sh"

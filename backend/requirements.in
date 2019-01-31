@@ -1,3 +1,7 @@
 ansible==2.7.6
 pip-tools==2.0.2
 django==2.1.5
+django-cors-headers==2.4.0
+django-environ==0.4.5
+django-debug-toolbar==1.9.1
+celery==4.1.1

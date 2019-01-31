@@ -1,0 +1,26 @@
+[program:{{ app_name }}-server]
+user = {{ linux_user }}
+stdout_logfile = /var/log/supervisor/{{ app_name }}-server-out.log
+stderr_logfile = /var/log/supervisor/{{ app_name }}-server-err.log
+logfile_maxbytes = 50MB
+logfile_backups = 5
+command = {{ backend_app_dir }}/config/deploy/bash_files/gunicorn.sh
+
+[program:{{ app_name }}-celery]
+stdout_logfile = /var/log/supervisor/{{ app_name }}-celery-out.log
+stderr_logfile = /var/log/supervisor/{{ app_name }}-celery-err.log
+logfile_maxbytes = 50MB
+logfile_backups = 5
+user = {{ linux_user }}
+directory = {{ backend_app_dir }}
+command = {{ venv_dir }}/bin/celery -A backend.config.celery_app worker
+
+
+[program:{{ app_name }}-celery-beat]
+stdout_logfile = /var/log/supervisor/{{ app_name }}-celery-beat-out.log
+stderr_logfile = /var/log/supervisor/{{ app_name }}-celery-beat-err.log
+logfile_maxbytes = 50MB
+logfile_backups = 5
+user = {{ linux_user }}
+directory = {{ backend_app_dir }}
+command = {{ venv_dir }}/bin/celery -A backend.config.celery_app beat --pidfile=/tmp/celerybeat-solastis.pid

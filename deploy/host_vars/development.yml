@@ -1,5 +1,9 @@
 git_branch: develop
 
+# DNS configurations
+domain: localhost
+
+# django config
 debug_mode: True
 
 secret_key: sdlgbdfkjgb94ibrego493gtbhr3iuvfwg944tre
@@ -16,3 +20,13 @@ raven_dsn:
 
 # Console customization
 console_promt: PS1="\[\033[01;32m\]\u@development \[\033[01;34m\]\t \w \$ \[\033[00m\]"
+
+https: False  # If server configuration is https
+ssl_certificate_path:
+ssl_certificate_key_path:
+
+# cors settings
+cors_disabled: True
+cors_allowed_hosts: 127.0.0.1, localhost
+
+# gunicorn settings

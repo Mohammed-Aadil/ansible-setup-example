@@ -1,0 +1,17 @@
+server {
+
+    listen 80 default_server;
+
+    return 301 https://$host$request_uri;
+
+    sendfile off;
+    expires -1;
+    gzip on;
+    gzip_disable "msie6";
+    gzip_vary on;
+    client_max_body_size 25M;
+    access_log /var/log/nginx/{{ app_name }}-access.log;
+    error_log /var/log/nginx/{{ app_name }}-error.log;
+    #Remove server headers:http://serverfault.com/questions/214242/can-i-hide-all-server-os-info
+    server_tokens off;
+}
