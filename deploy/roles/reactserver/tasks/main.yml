@@ -1,4 +1,5 @@
 ---
 - include_tasks: nodejs.yml
 - include_tasks: yarn.yml
+- include_tasks: nginx.yml
 - include_tasks: build_webclient.yml

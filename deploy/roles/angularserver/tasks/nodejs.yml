@@ -1,5 +1,5 @@
 ---
-- name: Configure the yarn APT key
+- name: Configure the nodejs APT key
   apt_key: url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key
   become: yes
 

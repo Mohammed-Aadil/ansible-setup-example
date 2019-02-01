@@ -1,0 +1,24 @@
+---
+- name: Ensure nginx is installed
+  apt:
+    name: nginx
+    state: latest
+  become: yes
+
+- name: Write angular server nginx conf file
+  template:
+    src: nginx-angular.j2
+    dest: /etc/nginx/conf.d/{{ app_name }}-angular.conf
+  become: yes
+  when: angular_server
+  notify:
+    - restart nginx
+
+
+- name: Remove default server
+  file:
+    path: "/etc/nginx/sites-enabled/default"
+    state: absent
+  become: yes
+  notify:
+    - restart nginx

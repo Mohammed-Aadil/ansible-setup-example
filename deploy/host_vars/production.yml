@@ -1,7 +1,7 @@
 git_branch: master
 
 # DNS configurations
-domain: localhost
+domain: _
 
 # django config
 debug_mode: False
